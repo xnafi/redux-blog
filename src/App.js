@@ -1,5 +1,12 @@
+import Navbar from "./components/shared/Navbar";
+
 function App() {
-  return <h1> hello</h1>;
+  
+  return (
+    <>
+      <Navbar />;
+    </>
+  );
 }
 
 export default App;
