@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/shared/Navbar";
 import Layout from "./layout/Layout";
-import Newest from "./components/Newest";
+import AllBlogs from "./components/AllBlogs";
+import { Saved } from "./components/Saved";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index path="/newest" element={<Newest />} />
+          <Route index element={<AllBlogs />} />
+          <Route path="/saved" element={<Saved/>} />
           <Route path="/patients" element={<div>Overview Page</div>} />
           <Route path="/schedule" element={<div>Schedule Page</div>} />
           <Route path="/message" element={<div>Message Page</div>} />

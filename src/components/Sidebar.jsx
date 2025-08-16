@@ -3,17 +3,6 @@ import { useNavigate } from "react-router-dom";
 export default function Sidebar() {
   const navigate = useNavigate();
 
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    if (value === "newest") {
-      navigate("/newest");
-    } else if (value === "most_liked") {
-      navigate("/most-liked");
-    } else {
-      navigate("/"); // default or home route
-    }
-  };
-
   return (
     <aside>
       <div className="sidebar-items">
@@ -23,7 +12,6 @@ export default function Sidebar() {
             name="sort"
             id="lws-sort"
             className="w-full max-w-[150px] border-2 rounded-md text-gray-500"
-            onChange={handleSortChange}
           >
             <option value="">Default</option>
             <option value="newest">Newest</option>
@@ -41,6 +29,7 @@ export default function Sidebar() {
                 id="lws-all"
                 defaultChecked
                 className="radio"
+                onClick={() => navigate("/")}
               />
               <label htmlFor="lws-all">All</label>
             </div>
@@ -50,6 +39,7 @@ export default function Sidebar() {
                 name="filter"
                 id="lws-saved"
                 className="radio"
+                onClick={() => navigate("/saved")}
               />
               <label htmlFor="lws-saved">Saved</label>
             </div>
