@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import SingleCard from "./SingleCard";
 
 export default function AllBlogs() {
   return (
-    <div>AllBlogs</div>
-  )
+    <div>
+      <SingleCard />
+    </div>
+  );
 }
