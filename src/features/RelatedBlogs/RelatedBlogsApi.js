@@ -1,0 +1,13 @@
+import axiosInstance from "../../utils/axios";
+
+export const GetRelatedBlogs = async ({ tags, id }) => {
+  const limit = 5;
+  let queryString =
+    tags?.length > 0
+      ? tags?.map((tag) => `tags_like=${tag}`).join("&") +
+        `&id_ne=${id}&_limit=${limit}`
+      : `id_ne=${id}&_limit=${limit}`;
+
+  const response = await axiosInstance.get(`/blog/?${queryString}`);
+  return response.data;
+};

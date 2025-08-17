@@ -1,15 +1,13 @@
-
-import BlogDetailCard from './BlogDetailCard';
-import BlogRelated from './BlogRelated';
+import BlogDetailCard from "./BlogDetailCard";
+import BlogRelated from "./BlogRelated";
 
 export default function BlogDetails() {
   return (
     <section className="post-page-container">
-      <BlogDetailCard/>
-      {/* <!-- detailed post ends --> */}
-      {/* <!-- related posts --> */}
+      {/* blog details */}
+      <BlogDetailCard />
+      {/* related  post */}
       <BlogRelated />
-      {/* <!-- related posts ends --> */}
     </section>
   );
 }
