@@ -18,7 +18,7 @@ export const fetchBlogs = createAsyncThunk(
 );
 
 const blogsSlice = createSlice({
-  name: "videos",
+  name: "blogs",
   initialState,
   extraReducers: (builders) => {
     builders
