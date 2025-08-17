@@ -984,8 +984,7 @@ p{
 .lws-card-image{
   aspect-ratio: 16 / 9;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  height: 300px;
 }
 
 .lws-card-header{

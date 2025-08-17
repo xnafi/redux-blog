@@ -6,8 +6,7 @@ export default function Layout() {
   return (
     <div className="wrapper">
       <Sidebar />
-      <div className="post-container" id="lws-postContainer"><Outlet /></div>
-      
+      <Outlet />
     </div>
   );
 }
