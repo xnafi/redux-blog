@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function SingleCard({ blog }) {
-  const { image, title, likes, tags } = blog || {};
+  const { image, title, likes, tags, id } = blog || {};
   return (
     <div className="lws-card">
-      <a href="post.html">
+      <Link to={`/blog/${id}`}>
         <img src={image} className="lws-card-image" alt={title} />
-      </a>
+      </Link>
       <div className="p-4">
         <div className="lws-card-header">
           <p className="lws-publishedDate">2023-05-01</p>
