@@ -1,6 +1,6 @@
 import axiosInstance from "../../utils/axios";
 
-export const GetBlog = async (id) => {
-  const response = await axiosInstance.get(`/blogs/${id}`);
+export const GetBlog = async (blogId) => {
+  const response = await axiosInstance.get(`/blogs/${blogId}`);
   return response.data;
 };

@@ -12,23 +12,30 @@ export default function BlogDetails() {
   );
   const dispatch = useDispatch();
   const { blogId } = useParams();
+  console.log(blogId);
 
   useEffect(() => {
     dispatch(fetchBlog(blogId));
   }, [dispatch, blogId]);
+
   // what to do
-  console.log(blog);
-  if (isLoading) <Loading />;
-  if (!isLoading && isError) <Loading />;
+  let content = null;
+
+  if (isLoading) content = <Loading />;
   if (!isLoading && isError)
-    <div className="col-span-12">some error happened {error}</div>;
+    content = <div className="col-span-12">some error happened {error}</div>;
+  if (!isLoading && !isError && blog?.id) {
+    content = (
+      <section className="post-page-container">
+        <BlogDetailCard blog={blog} />
+      </section>
+    );
+  }
 
   return (
     <section className="post-page-container">
-      {/* blog details */}
-      <BlogDetailCard blog={blog} />
-      {/* related  post */}
-      <BlogRelated />
+      {content}
+      <BlogRelated currentId={blog.id} tags={blog.tags} />
     </section>
   );
 }

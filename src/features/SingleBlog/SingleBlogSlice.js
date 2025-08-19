@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { GetBlog } from "./SingleBlogApi";
 
-
 const initialState = {
   blog: {},
   isLoading: false,
@@ -9,12 +8,12 @@ const initialState = {
   error: "",
 };
 
-export const fetchBlog = createAsyncThunk("blog/fetchBlog", async (id) => {
-  const Blog = await GetBlog(id);
-  return Blog;
+export const fetchBlog = createAsyncThunk("blog/fetchBlog", async (blogId) => {
+  const blog = await GetBlog(blogId);
+  return blog;
 });
 
-const BlogSlice = createSlice({
+const blogSlice = createSlice({
   name: "blog",
   initialState,
   extraReducers: (builders) => {
@@ -36,4 +35,4 @@ const BlogSlice = createSlice({
   },
 });
 
-export default BlogSlice.reducer;
+export default blogSlice.reducer;

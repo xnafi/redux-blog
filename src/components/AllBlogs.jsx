@@ -19,7 +19,6 @@ export default function AllBlogs() {
   let content = null;
 
   if (isLoading) content = <Loading />;
-  if (!isLoading && isError) content = <Loading />;
   if (!isLoading && isError)
     content = <div className="col-span-12">some error happened {error}</div>;
   if (!isLoading && !isError && blogs?.length > 0)

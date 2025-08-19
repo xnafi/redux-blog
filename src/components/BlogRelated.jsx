@@ -1,51 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRelatedBlogs } from "../features/RelatedBlogs/RelatedBlogsSlice";
+import { Link } from "react-router-dom";
 
-export default function BlogRelated() {
+export default function BlogRelated({ tags, currentId }) {
+  console.log(tags, currentId);
+  const dispatch = useDispatch();
+
+  const { relatedBlogs } = useSelector((state) => state.relatedBlogs);
+  useEffect(() => {
+    dispatch(fetchRelatedBlogs({ tags, id: currentId }));
+  }, [dispatch, currentId, tags]);
   return (
     <aside>
       <h4 className="mb-4 text-xl font-medium" id="lws-relatedPosts">
         Related Posts
       </h4>
-      <div className="space-y-4 related-post-container">
-        {/* <!-- related post  --> */}
-        <div className="card">
-          <a href="post.html">
-            <img src="./images/git.webp" className="card-image" alt="" />
-          </a>
-          <div className="p-4">
-            <a
-              href="post.html"
-              className="text-lg post-title lws-RelatedPostTitle"
-            >
-              Top Github Alternatives
-            </a>
-            <div className="mb-0 tags">
-              <span>#python,</span> <span>#tech,</span> <span>#git</span>
+      {relatedBlogs?.map((blog, index) => (
+        <div className="space-y-4 related-post-container" key={index}>
+          {/* <!-- related post  --> */}
+          <div className="card">
+            <Link to={`/blogs/${blog.id}`}>
+              <img src={blog?.image} className="card-image" alt="" />
+            </Link>
+            <div className="p-4">
+              <Link
+                to={`/blogs/${blog.id}`}
+                className="text-lg post-title lws-RelatedPostTitle"
+              >
+                {blog.title}
+              </Link>
+              <div className="mb-0 tags">
+                <span>#python,</span> <span>#tech,</span> <span>#git</span>
+              </div>
+              <p>{blog.createdAt}</p>
             </div>
-            <p>2010-03-27</p>
           </div>
+          {/* <!-- related post ends --> */}
         </div>
-        {/* <!-- related post ends --> */}
-        {/* <!-- related post  --> */}
-        <div className="card">
-          <a href="post.html">
-            <img src="./images/ai.jpg" className="card-image" alt="" />
-          </a>
-          <div className="p-4">
-            <a
-              href="post.html"
-              className="text-lg post-title lws-RelatedPostTitle"
-            >
-              The future of Artificial Inteligence
-            </a>
-            <div className="mb-0 tags">
-              <span>#python,</span> <span>#tech,</span> <span>#git</span>
-            </div>
-            <p>2020-07-15</p>
-          </div>
-        </div>
-        {/* <!-- related post ends --> */}
-      </div>
+      ))}
     </aside>
   );
 }
