@@ -16,29 +16,33 @@ export default function BlogRelated({ tags, currentId }) {
       <h4 className="mb-4 text-xl font-medium" id="lws-relatedPosts">
         Related Posts
       </h4>
-      {relatedBlogs?.map((blog, index) => (
-        <div className="space-y-4 related-post-container" key={index}>
-          {/* <!-- related post  --> */}
-          <div className="card">
-            <Link to={`/blogs/${blog.id}`}>
-              <img src={blog?.image} className="card-image" alt="" />
-            </Link>
-            <div className="p-4">
-              <Link
-                to={`/blogs/${blog.id}`}
-                className="text-lg post-title lws-RelatedPostTitle"
-              >
-                {blog.title}
+      {relatedBlogs > 0 ? (
+        relatedBlogs.map((blog, index) => (
+          <div className="space-y-4 related-post-container" key={index}>
+            {/* <!-- related post  --> */}
+            <div className="card">
+              <Link to={`/blogs/${blog.id}`}>
+                <img src={blog?.image} className="card-image" alt="" />
               </Link>
-              <div className="mb-0 tags">
-                <span>#python,</span> <span>#tech,</span> <span>#git</span>
+              <div className="p-4">
+                <Link
+                  to={`/blogs/${blog.id}`}
+                  className="text-lg post-title lws-RelatedPostTitle"
+                >
+                  {blog.title}
+                </Link>
+                <div className="mb-0 tags">
+                  <span>#python,</span> <span>#tech,</span> <span>#git</span>
+                </div>
+                <p>{blog.createdAt}</p>
               </div>
-              <p>{blog.createdAt}</p>
             </div>
+            {/* <!-- related post ends --> */}
           </div>
-          {/* <!-- related post ends --> */}
-        </div>
-      ))}
+        ))
+      ) : (
+        <span>no related blogs found</span>
+      )}
     </aside>
   );
 }
