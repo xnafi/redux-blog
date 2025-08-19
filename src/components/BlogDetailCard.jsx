@@ -1,6 +1,8 @@
-import React from 'react'
+import React from "react";
 
-export default function BlogDetailCard() {
+export default function BlogDetailCard({ blog }) {
+  const {image,title,likes,tags,isSaved} = blog || {};
+  console.log(blog);
   return (
     <main className="post">
       <img

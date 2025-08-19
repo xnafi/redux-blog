@@ -5,6 +5,7 @@ import AllBlogs from "./components/AllBlogs";
 import { Saved } from "./components/Saved";
 import BlogDetails from "./components/BlogDetails";
 
+
 function App() {
   return (
     <>
@@ -17,7 +18,7 @@ function App() {
           <Route path="/message" element={<div>Message Page</div>} />
           <Route path="/transactions" element={<div>Transactions Page</div>} />
         </Route>
-        <Route path="/blog/:id" element={<BlogDetails/>} />
+        <Route path="/blogs/:blogId" element={<BlogDetails />} />
       </Routes>
     </>
   );

@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function SingleCard({ blog }) {
-  const { image, title, likes, tags, id } = blog || {};
+  const { image, title, likes, tags, id, createdAt } = blog || {};
   return (
     <div className="lws-card">
-      <Link to={`/blog/${id}`}>
+      <Link to={`/blogs/${id}`}>
         <img src={image} className="lws-card-image" alt={title} />
       </Link>
       <div className="p-4">
         <div className="lws-card-header">
-          <p className="lws-publishedDate">2023-05-01</p>
+          <p className="lws-publishedDate">{createdAt}</p>
           <p className="lws-likeCount">
             <i className="fa-regular fa-thumbs-up"></i>
             {likes}
