@@ -25,11 +25,7 @@ export default function BlogDetails() {
   if (!isLoading && isError)
     content = <div className="col-span-12">some error happened {error}</div>;
   if (!isLoading && !isError && blog?.id) {
-    content = (
-      <section className="post-page-container">
-        <BlogDetailCard blog={blog} />
-      </section>
-    );
+    content = <BlogDetailCard blog={blog} />;
   }
 
   return (

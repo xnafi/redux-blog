@@ -27,7 +27,10 @@ export default function BlogDetailCard({ blog }) {
           </button>
           {/* <!-- handle save on button click --> */}
           {/* <!-- use ".active" class and "Saved" text  if a post is saved, other wise "Save" --> */}
-          <button className="active save-btn" id="lws-singleSavedBtn">
+          <button
+            className={isSaved ? "active save-btn" : ""}
+            id="lws-singleSavedBtn"
+          >
             <i className="fa-regular fa-bookmark"></i> Saved
           </button>
         </div>
