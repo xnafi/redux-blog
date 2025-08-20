@@ -1,43 +1,38 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetBlog, UpdateSavedStatus } from "./SingleBlogApi";
+import { toggleSavedBlog } from "./UpdateStatusAndLikeApi";
 
 const initialState = {
-  blog: {},
+  blogs: {},
   isLoading: false,
   isError: false,
   error: "",
 };
-
-// fetch single blog
-export const fetchBlog = createAsyncThunk("blog/fetchBlog", async (blogId) => {
-  const blog = await GetBlog(blogId);
-  return blog;
-});
-
-// update isSaved status
+// Async thunk to toggle saved status
 export const updateSavedStatus = createAsyncThunk(
-  "blog/updateSavedStatus",
-  async ({ blogId, isSaved, likes }) => {
-    const blog = await UpdateSavedStatus({ blogId, isSaved, likes });
-    return blog;
+  "blogs/updateSavedStatus",
+  async ({ blogId, isSaved }) => {
+    const updatedBlog = await toggleSavedBlog(blogId, isSaved);
+    return updatedBlog;
   }
 );
 
-const updateSavedStatusSlice = createSlice({
-  name: "blog",
+const updateBlogSlice = createSlice({
+  name: "blogs",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder
-      // update saved status
+      .addCase(updateSavedStatus.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(updateSavedStatus.fulfilled, (state, action) => {
-        state.blog = action.payload;
+        state.isLoading = false;
+        state.blogs = action.payload;
       })
       .addCase(updateSavedStatus.rejected, (state, action) => {
-        state.isError = true;
-        state.error = action.error?.message;
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export default updateSavedStatusSlice.reducer;
+export default updateBlogSlice.reducer;

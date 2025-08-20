@@ -1,9 +1,9 @@
 import axiosInstance from "../../utils/axios";
 
-export const UpdateSavedStatus = async ({ blogId, isSaved,likes }) => {
+// PATCH request to update isSaved status
+export const toggleSavedBlog = async (blogId, isSaved) => {
   const response = await axiosInstance.patch(`/blogs/${blogId}`, {
-      isSaved,
-      likes
+    isSaved: !isSaved,
   });
   return response.data;
 };

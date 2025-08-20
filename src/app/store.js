@@ -2,13 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import blogsReducer from "../features/AllBlogsSlice/AllBlogsSlice";
 import relatedBlogReducer from "../features/RelatedBlogs/RelatedBlogsSlice";
 import blogReducer from "../features/SingleBlog/SingleBlogSlice";
-import updateStatusReducer from "../features/UpdateStatusAndLike/UpdateStatusAndLikeSlice";
+import updateBlogReducer from "../features/UpdateStatusAndLike/UpdateStatusAndLikeSlice";
+
 
 export const store = configureStore({
   reducer: {
     blogs: blogsReducer,
     blog: blogReducer,
     relatedBlogs: relatedBlogReducer,
-    updateStatus: updateStatusReducer,
+    updateStatus: updateBlogReducer,
   },
 });
