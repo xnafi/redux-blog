@@ -22,11 +22,15 @@ const updateBlogSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(updateSavedStatus.pending, (state) => {
+        state.isError = false;
         state.isLoading = true;
       })
       .addCase(updateSavedStatus.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.blogs = action.payload;
+        const indexUpdate = state.blogs.findIndex(
+          (t) => t.id === action.payload.id
+        );
+        state.blogs[indexUpdate] = action.payload;
       })
       .addCase(updateSavedStatus.rejected, (state, action) => {
         state.isLoading = false;
