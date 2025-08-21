@@ -12,7 +12,6 @@ export default function BlogDetails() {
   );
   const dispatch = useDispatch();
   const { blogId } = useParams();
-  console.log(blogId);
 
   useEffect(() => {
     dispatch(fetchBlog(blogId));
