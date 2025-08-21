@@ -17,7 +17,7 @@ export default function BlogRelated({ tags, currentId }) {
       <h4 className="mb-4 text-xl font-medium" id="lws-relatedPosts">
         Related Posts {relatedBlogs.length}
       </h4>
-      {relatedBlogs.map((blog, index) => (
+      {relatedBlogs.length > 0 ? relatedBlogs.map((blog, index) => (
         <div className="space-y-4 related-post-container" key={index}>
           {/* <!-- related post  --> */}
           <div className="card">
@@ -39,7 +39,7 @@ export default function BlogRelated({ tags, currentId }) {
           </div>
           {/* <!-- related post ends --> */}
         </div>
-      ))}
+      )) : <span> no related blog found</span>}
     </aside>
   );
 }
